@@ -1,5 +1,6 @@
-## comandos
+# comandos
 
+todos los comandos de linux son archivos binarios que estan en el directorio bin 
 #### pwd
 #### ls -a -a  
 #### ln -s  de link crea enlaces simbolicos
@@ -27,17 +28,35 @@ si repito este paso se sobreescribira el archivo
 
 para añadir `echo agregado >> nombreArchivo.txt` añadira una linea nueva con lo agregado
 
+#### dir
+muestra el nombre del directorio 
+
+#### printenv PATH
+ imprime variable de entorno mostrando todos los directorios donde buscara un ejecutable cuando yo lo ejecute 
+
+ejemplo    `printenv PATH` en un subsistema de windows me muestra 
+
+ /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu18.04onWindows_1804.2020.423.0_x64__79rhkp1fndgsc:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/QuickTime/QTSystem/:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/Eyd/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Eyd/AppData/Local/GitHubDesktop/bin:/snap/bin
+
+ hay estan los directorios con sus rutas, separados entre si por los dos puntos ` : `  
+ el sistema buscara el binario de un comando en cada una de esas carpetas en el orden que se imprimieron hasta encontrarlo y ejecutarlo 
+   
+ ---   
+   1.Añadir una ruta de un archivo ejecutable a las variables de entorno
+      
+      cuando creo un programa en un archivo lo ejecuto con ./programa
+      pero los programas que creamos por defecto no tienen permiso de ejecución 
+
+ #### which
+para buscar donde se encuentra un archivo ejecutable , muestra la ruta completa 
 
 
 
 
-dir  muestra el nombre del directorio 
 
 
-todos los comandos de linux son archivos binarios que estan en el directorio bin 
 
-
-###  estructura de archivos 
+#  estructura de archivos 
 
 ## tipos directorios 
 
@@ -168,3 +187,38 @@ ya podemos ejecutar aplicaciones graficas de linux desde ubuntu subsistema
 para manipular los archivos que ya esten editados ya que la primera vez que vamos a escribir algo en un archivo lo podemos hacer con echo mensaje1 > archivo y si agregamos con echo mensaje2 >> archivo se adiciona pero para corregir mensaje1 o mensaje2 tendriamos que escribir todo de nuevo 
 
 nano es el editor que viene preinstalado en el sistema 
+
+   
+   1. abrir el documento  nano nombre.ext
+
+   al abrir nano en la parte baja nos muestra las acciones del editor 
+
+
+
+## variables de entorno 
+cuando ejecuto o abro un archivo estoy moviendome hacia donde esta por ejemplo si tengo un archivo 
+hola_mundo.js en el directorio de usuario y quiero ejecutarlo estando fuera del directorio ejecuto 
+
+/home/usuario/hola_mundo.js  y correra el archivo 
+
+pero al ejecutar comando que tambien son archivos binarios que estan en /bin no usamos /bin/ls para ejecutarlo 
+solo ls 
+
+todas aquellas archivos o ejecutables que van a estar disponibles desde cualquier carpeta y desde cualquier usuario son las que estan dentro de la variable entorno 
+llamada PATH 
+
+## permisos de administrador
+
+r -> Del inglés read, indica el permiso de lectura sobre este archivo o directorio.
+w -> Del inglés write, indica el permiso de escritura sobre este archivo o directorio.
+x -> Del inglés execution, indica el permiso de ejecución sobre este archivo o directorio.
+El guión indica la ausencia de ese permiso.
+
+drwxr-xr-x 
+
+d directorio
+- archivo 
+drwx directorio permisos usuario propietario
+drwxr-x directorio permisos usuario propietario y grupo
+drwxr-xr-x directorio permisos usuario propietario, grupo y otros 
+-rwxr-xr-x archivo permisos usuario propietario, grupo y otros 
