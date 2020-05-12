@@ -1,18 +1,36 @@
 ## comandos
 
-pwd
-ls -a -a  
-cd .  ..  
-mv mueve o renombrar es como cortar y pegar con otro nombre
-cp copia  rutaOrigen  rutaDestino
-ps lista los procesos que se estan ejecutando 
-mkdir
-rm  -r -R -rf  -f 
-rmdir elimina directorios vacios 
-touch
-cat 
-ifconfig  muestra el estado de la red 
-echo $nom123     mostrara la ubicación del archivo nom123
+#### pwd
+#### ls -a -a  
+#### ln -s  de link crea enlaces simbolicos
+#### cd .  ..  
+#### mv mueve o renombrar es como cortar y pegar con otro nombre
+#### cp copia  rutaOrigen  rutaDestino
+#### ps lista los procesos que se estan ejecutando 
+#### mkdir
+#### rm  -r -R -rf  -f 
+#### rmdir elimina directorios vacios 
+#### touch
+#### cat
+  concatena , muestra el contenido de un elemento  
+cat archivo1 archivo2 > archivosuma
+al hacer un cat archivosuma me mostrara en un solo archivo el contenido de archivo1 y archivo2 
+
+
+#### ifconfig  muestra el estado de la red 
+#### echo
+ imprime en pantalla lo que typiemos 
+
+al usar echo y cat puedo escribir documentos ejemplo
+`echo escribomensaje > nombreArchivo.txt` el mensaje se imprio y se mando al archivo 
+si repito este paso se sobreescribira el archivo 
+
+para añadir `echo agregado >> nombreArchivo.txt` añadira una linea nueva con lo agregado
+
+
+
+
+
 dir  muestra el nombre del directorio 
 
 
@@ -95,6 +113,41 @@ carpeta super usuario. Este usuario no esta en home, si no que tiene su carpeta 
 archivos temporales, esta carpeta no es oficial y anteriormente estaba dentro del directorio /var, pero se separo de /var porque aveces en un servidor se necesita que /var este en un discoduro diferente para mejorar el rendimiento, pero los archivos temporales necesarios para la ejecución de programas quedaban fuera del disco primario.  
 /run es una propuesta de algunas distribuciones para solucionar este problema 
 
+### /sbin
+similar a bin, guarda archivos binarios ejecutables pero la diferencia es que estos son binarios del sistema operativo y con ellos puedo gestionar el sistema en si y los de bin gestionan las aplicaciones en el sistema. 
+la diferencia esta en la profundidad de los comando no es lo mismo un comando para copiar y pegar que uno que cambie la configuracion de la red por ejemplo el segundo es mas profundo y se guarda en sbin
+
+### /SElinux 
+seguridad para linux, en ella se guardan los programas que gestionan la seguridad del sistema 
+
+### /srv
+server  indica que programas estan ejecutandose como servicio, es parte de la especificacion de linux, pero es mas comun mover los ejecutables binarios del servidor a /bin y los datos del servidor a /var.
+no se usa mucho, pero no se elimina por compatibilidad con otras distro o programas que la requieran.
+
+### /sys 
+
+parecido al funcionamiento de la carpeta (Device en windows) muestra los dispositivos como los ve o administra el kernel  y si entro en el directorio veremos la clasificación por dispositivos, kernel, bus, power, firware
+
+### /tmp 
+
+archivos temporales durante la ejecución de programas 
+
+### /usr 
+guarda los binarios del usuario o programas del usuario que solo estaran disponibles para ese solo usuario 
+
+### /var 
+
+guarda la información que generan varios programas dentro de este directorio se guardan backup, tmp, cache, log para registros, etc. es información que no gestionamos nosotros si no las aplicaciones.
+no hay que confundir con /etc ya que /etc guarda la configuración no la información. tambien /home guarda la información del usuario pero las aplicaciones las guardan en /var 
+la diferencia es mucha entre los distintos tipos de datos 
+
+
+## ENLACES SIMBÓLICOS 
+Son algo parecido a los accesos directos de win pero mas potentes se crean con `ln -s rutaDeCarpeta`
+y se gestiona igual que la carpeta original, puedo crear documentos,borrarlos,editarlos y esos cambios estaran pasando en la carpeta original 
+se elimina con rm y no con rmdir 
+
+
 
 ## subsitema grafico
 
@@ -108,3 +161,10 @@ si ejecutamos desde la terminal una aplicación grafica aun genera error porque 
 ejecutamos el comando `export  DISPLAY=:0` siendo 0 el numero de la pantalla por defecto que usa el servidor xming 
 
 ya podemos ejecutar aplicaciones graficas de linux desde ubuntu subsistema
+
+
+## editor nano
+
+para manipular los archivos que ya esten editados ya que la primera vez que vamos a escribir algo en un archivo lo podemos hacer con echo mensaje1 > archivo y si agregamos con echo mensaje2 >> archivo se adiciona pero para corregir mensaje1 o mensaje2 tendriamos que escribir todo de nuevo 
+
+nano es el editor que viene preinstalado en el sistema 
