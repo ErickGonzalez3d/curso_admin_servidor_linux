@@ -71,7 +71,14 @@ Almacena la carpetas por usuario que tengamos en el sistema , por defecto tendre
 Librerias  = elementos comunes de la programación de varios programas, son los elementos comunes que tiene varios programas, seria logico pensar que los elementos de un programa debe estar en /etc  pero seria innecesario crear una libreria de por ejemplo de python por cada programa que requiera de este para ejecutarse, para eso existe el directorio /lib
 la diferencia es que en lib64 se almacenan las librerias exclusivas de 64 bits 
 
+### directorio /lostandfound
+se guardan archivos temporales para recuperacioón del sistema 
 
+### /media 
+esta la unidad de CDrom del equipo si tiene  en este directorio se guardan las unidades consideradas mas externas 
+
+### /mnt 
+de mount o montaje , almacena los discos, las unidades usb u todo dispositivo que este en un punto de entrada estara en esta carpeta 
 
 
 ## subsitema grafico
