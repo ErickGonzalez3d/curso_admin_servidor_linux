@@ -3,30 +3,54 @@
 todos los comandos de linux son archivos binarios que estan en el directorio bin 
 #### pwd
 #### ls -a -a  
-#### ln -s  de link crea enlaces simbolicos
-#### cd .  ..  
-#### mv mueve o renombrar es como cortar y pegar con otro nombre
-#### cp copia  rutaOrigen  rutaDestino
-#### ps lista los procesos que se estan ejecutando 
+#### ln -s  de 
+link crea enlaces simbolicos
+#### cd .  ..  /  ~  -  -- 
+navega entre las rutas de las carpetas 
+#### mv
+ mueve o renombrar es como cortar y pegar con otro nombre
+#### cp 
+copia  rutaOrigen  rutaDestino
+#### ps
+ lista los procesos que se estan ejecutando 
 #### mkdir
+crea directorios 
+
 #### rm  -r -R -rf  -f 
-#### rmdir elimina directorios vacios 
+borrado de archivos 
+#### rmdir 
+elimina directorios vacios 
 #### touch
+crea archivos
 #### cat
   concatena , muestra el contenido de un elemento  
-cat archivo1 archivo2 > archivosuma
-al hacer un cat archivosuma me mostrara en un solo archivo el contenido de archivo1 y archivo2 
+* cat archivo.ejem
+  crea  archivo.ejem en el directorio actual 
+ 
+ * cat archivo1 archivo2 > archivosuma
+  crea archivosuma con el contenido de archivo1 y archivo2  
+ 
+ * cat archivo1 > archivo2 
+  sobre escribe archivo2 con el contenido de archivo1
+ 
+ * cat archivo1 >> archivo2 
+  adiciona el contenido del archivo1 al archivo2 
 
+#### ifconfig 
+* muestra el estado de la red 
 
-#### ifconfig  muestra el estado de la red 
 #### echo
- imprime en pantalla lo que typiemos 
+  * echo 'mensaje'
+  imprime en pantalla mensaje
 
-al usar echo y cat puedo escribir documentos ejemplo
-`echo escribomensaje > nombreArchivo.txt` el mensaje se imprio y se mando al archivo 
-si repito este paso se sobreescribira el archivo 
+  * echo mensaje > Archivo.txt
 
-para añadir `echo agregado >> nombreArchivo.txt` añadira una linea nueva con lo agregado
+  mensaje escribio en archivo.txt y si no estaba creado lo crea y si ya tenia contenido lo sobreescribe
+  
+
+  * echo mensaje2 >> Archivo.txt agregara mansaje2 al contenido de archivo.txt
+
+
 
 #### dir
 muestra el nombre del directorio 
@@ -52,16 +76,12 @@ para buscar donde se encuentra un archivo ejecutable , muestra la ruta completa
 
 
 
-
-
-
-
 #  estructura de archivos 
 
 ## tipos directorios 
 
 #### directorios compartibles 
-pueden acceder varios usuarios desde diferentes equipos como  var/mail , home, opt, etc
+pueden acceder varios usuarios desde diferentes equipos ya sean locales o remotos como  var/mail , home, opt, etc
 
 #### directorios No compartibles 
 accesible y modificable solo por el administrador del sistema /etc, /boot, etc 
@@ -222,3 +242,13 @@ drwx directorio permisos usuario propietario
 drwxr-x directorio permisos usuario propietario y grupo
 drwxr-xr-x directorio permisos usuario propietario, grupo y otros 
 -rwxr-xr-x archivo permisos usuario propietario, grupo y otros 
+
+ r =1
+ w =2
+rw =3
+ x =4
+rx =5
+rw =6
+rwx =7 
+
+## crear un pequeño programa 
