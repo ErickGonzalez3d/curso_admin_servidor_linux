@@ -21,9 +21,9 @@ borrado de archivos
 #### rmdir 
 elimina directorios vacios 
 #### touch
-crea archivos
+ Crea archivos 
 #### cat
-  concatena , muestra el contenido de un elemento  
+  muestra en pantalla el contenido de un elemento Crea archivos apartir de impresione o de otros archivos o de la cambimacion de varios, concatena , muestra el contenido de un elemento  
 * cat archivo.ejem
   crea  archivo.ejem en el directorio actual 
  
@@ -242,30 +242,7 @@ solo ls
 todas aquellas archivos o ejecutables que van a estar disponibles desde cualquier carpeta y desde cualquier usuario son las que estan dentro de la variable entorno 
 llamada PATH 
 
-## permisos de administrador
 
-r -> Del inglés read, indica el permiso de lectura sobre este archivo o directorio.
-w -> Del inglés write, indica el permiso de escritura sobre este archivo o directorio.
-x -> Del inglés execution, indica el permiso de ejecución sobre este archivo o directorio.
-El guión indica la ausencia de ese permiso.
- 
-drwxr-xr-x 
-
-d directorio
-- archivo 
-drwx directorio permisos usuario propietario
-drwxr-x directorio permisos usuario propietario y grupo
-drwxr-xr-x directorio permisos usuario propietario, grupo y otros 
--rwxr-xr-x archivo permisos usuario propietario, grupo y otros 
-
- r =1
- w =2
-rw =3
- x =4
-rx =5
-rw =6
-rwx =7 
-___
 ## crear un pequeño programa y agregarlo a las variables de entorno 
 
 voy a al directorio home y creo un documento 
@@ -380,9 +357,119 @@ aun instalando el sistema y aun siendo el unico usuario visible no tendre permis
   esto lo puede hacer los usuarios que esten inscritos como sudoers, los usuarios que creemos y no sean sudoers no podran cambiar la propiedad de elementos ni siquiera los propios 
 
 
- # permosos de archivos 
+ # permosos de archivos  chmod
 
-  
+
+
+ el especificar la propiedad de un elemento no define el comportamiento o interacion que va a tener con ese propietario, o con los otros usuarios, por ejemplo ,si queremos que un archivo lo pueda ejecutar el propietario, ya que por defecto se crean sin permiso de ejecución, o si queremos que otro usuario del sistema pueda modificarlo pero no ejecutarlo, o si queremos que no lo pueda leer si la necesidad de ocultarlo para que pueda escribir o que lo pueda leer y no escribir 
+
+
+ chmod el primer numero es para el propietario el segundo para el grupo donde esta el propietario y el tercero para miembros de otros grupos 
+ y por ultimo el archivo al que se la va a cambiar los permisos 
+
+
+  chmod 777 archivo.ext
+
+  al observar el listado en la terminal de este archivo con este permiso vemos que cambio de color indicando que puede ser un binario o ejecutabla 
+
+  #### permisos de administrador
+  el primer caracter nos indica que tipo de elemento es directorio o archivo  
+        
+
+  d directorio
+- archivo
+
+r -> Del inglés read, indica el permiso de lectura sobre este archivo o directorio.
+w -> Del inglés write, indica el permiso de escritura sobre este archivo o directorio.
+x -> Del inglés execution, indica el permiso de ejecución sobre este archivo o directorio.
+El guión indica la ausencia de ese permiso.
+ 
+drwxr-xr-x 
+
+ 
+drwx directorio permisos usuario propietario
+drwxr-x directorio permisos usuario propietario y grupo
+drwxr-xr-x directorio permisos usuario propietario, grupo y otros 
+-rwxr-xr-x archivo permisos usuario propietario, grupo y otros 
+ - = 0 
+ r =1
+ w =2
+rw =3
+ x =4
+rx =5
+rw =6
+rwx =7 
+
+se usa un solo numero para cada categoria  propietario,grupo,otros ejemplo 751  propietario todos los permisos, grupo leer y escribir, otros leer
+ ___
+
+# cron 
+
+es un archivo con una  operación o servicio muy util porque sirve para programar tareas de ejecución automatizada en el sistema con la frecuencia y periodicidad que queramos indicar 
+existe un archivo con el nombre crontab en el sistema, este permite gestionar las tareas automatizadas sin intervencion de ningun usuario humano 
+
+por ejemplo para hacer una copia de seguridad y comprimirla en tar.gz  tendiamos que recordar hacerla manualmente 
+ editamos el archivo crontab con 
+          `sudo crontab -e`
+  el sistema pide que se le especifique con cual editor vamos a trabajar elegimos nano en mi caso es la opcion 1 pero puede variar 
+
+  el archivo tiene lineas que no tomara en cuenta porque estan precedidas por almohadillas o numerales hash # 
+  estas lineas son la especificacion para escribir el archivo  e incluso nos muestra un ejemplo
+
+
+  aca vamos a configura el archivo 
+
+  todos los comandos los escribimos al final del archivo y empiezan con la configuracion de la frecuencia de la tarea 
+
+primer numero es el minuto 
+el segudo la hora 
+el tercer numero es el dia del mes  
+el cuarto es el mes del año 
+el quinto es el dia de la semana  el cual se escribe en formato (ISO) donde el numero 0 es el domingo y el 6 al sabado 
+
+usamos el * para especificar que queremos todos la opciones de numero en la posición indicado por ejemplo 1 11 15 * * 
+
+aca indicamos el primer minuto de la hora 11 de los dias 15 de todos los meses cualquier dia de la semana 
+
+si indicamos la fracuencia 
+
+* * * * * tar -zcf /var/backups/backup.tar.gz /home/usuario
+ 
+
+estamos especificando cada minuto de cada hora todos los dias del mes todos los meses cualquier dia de la semana comprima con tar -zcf en el directorio  /var/backups/ un archivo backup.tar.gz con el contenido de el directorio /home/usuario
+
+ ya podemos salir y guardar el crontab y empezara a ejecutarse cada minuto un back con el comando 
+
+ vericficamos que se esta ejecutando el comando automatizado entrando en /var/backups 
+ 
+## crontab con fechas 
+al usar configurar un crontab con una instrucion como la anterior cada vez que se ejecute se sobre escribira el archivo pues cada minuto se genera una copia con el mismo nombre 
+lo podemos comprobar si vamos a la carpeta del backup y listamos la fecha 
+si quiero tener un historial de conforme pasa el tiempo debemos guardar el archivo anterior para que esto no pase guardamos la copia con la fecha y asi como las fechas son distintas no se sobre escribiran, para esto usamos date
+
+date es un conjuntos de utilidades que podemos ver com `man date`
+
+nos muestra los controles de formato que permiten trabajar la salida o output 
+
+%Y para indicar año de year 
+%H para indicar hora 
+%m el mes 
+%d el dia
+%M minuto
+%S segundo
+
+para que el nombre del archivo quede guardado con la fecha usamos la utilidad date en el nombre que va a guardar el crontab cada vez que se ejecute 
+asi
+usuario
+
+* * * * * tar -zcf /var/backups/backup-$(date +%Y- %m -%d -%H -%M - %S).tar.gz /home/
+
+de esta manera todos los nombres seran distintos cada vez que se ejecute el comando programado en el crontab y se iran guradando secuencialmente sin sobre escribir al anterior 
+
+
+
+
+
 
 
 
