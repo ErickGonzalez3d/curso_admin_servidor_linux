@@ -308,7 +308,55 @@ ___
 
 
 
-# super usuario administrador o root 
+# super usuario administrador,su, o root 
 
  este es el usuario de mas alto nivel puede hacer cualquier cosa en el sistema incluso borrar archivos indispensables para el funcionamiento de la maquina, por eso es recomendable hacer solo lo obligatoriamente necesario con este usuario
- intentamos trabajar como super usuarios con el comando `su`.  en otras distribuciones de linux o unix nos pedira la contraseña y podriamos entrar pero ubuntu o ubuntu server no podremos acceder , y no es porque no se conozca la contraseña es que ubuntu  no tiene un surperadministrador por defecto 
+
+
+ intentamos trabajar como super usuarios con el comando `su`.  en otras distribuciones de linux o unix nos pedira la contraseña y podriamos entrar pero ubuntu o ubuntu server no podremos acceder , y no es porque no se conozca la contraseña es que ubuntu  no tiene un surperadministrador por defecto ya que no maneja ese comcepto  pero podriamos configurar un root 
+
+ al ejecutar `su` y poner la contraseña nos dira que hay un fallo de autenticación y no es por no sabernos el password es que en realidad no existe un `su` a menos de que se configure 
+
+aun instalando el sistema y aun siendo el unico usuario no tendre permisos de administrador 
+ cuando necesitamos un permiso de superusuario  ejecutamos el comando `sudo` 
+ 
+ podemos intentar leer /etc/shadow con cat  y nos saltara permisos denegados 
+ pero al usar sudo cat shadow nos pedira la contraseña, pero no la contraseña de super administrador si no la de nuestro usuario
+ la ponemos y  mostrara el contenido del archivo
+
+ siempre que se necesite permisos de root usamos sudo y la contraseña 
+ para ver que usuario tiene permiso de superusuario en /etc ejecutamos `sudo cat sudoers` y mostrara el tipo de permiso posible para cada tipo de usuario  por ejemplo los que tiene  el grupo %admin 
+
+ podemos cambiar esos permisos modificando ese archivo con `sudo visudo` se abrira nano con el contenido y puedo cambiar los permisos de administración por si no quiero que todos los usuarios tengan esos permisos 
+
+
+ ## Crear y configurar otro usuario  
+ al emoezar a trabajar lo hacemos con el usuario por defecto al ejecutar comando
+  `adduser aguacate` no lo deja ejecutar porque solo el root puede crear usuarios
+  `sudo adduser aguacate` crea un usuario aguacate y un grupo aguacate porque no le estamos diciendo el grupo al cual va a pertenecer 
+    se crea un directorio en la dentro de /home con nombre aguacate y copia los ficheros de inicio de /etc/skel 
+   creamos la contraseña de ese usuario y añadimos los datos 
+   full name 
+   room Number 
+   Work phone 
+   Home phone
+   other 
+
+
+
+  `adduser pepe --ingroup users ` crea usuario pepe en el grupo de usuarios 
+
+  estos usuarios pueden iniciar sesion 
+  para no salirnos cerrando sesion usamos `su aguacate`
+  aca puedo ejecutar `passwd` y cambiar la contraseña por una de mas de 4 caracteres 
+  una vez cambiada la contraseña si el root no conoce la contraseña no podra iniciar sesión con ese usuario 
+  
+
+
+
+
+
+
+
+
+
