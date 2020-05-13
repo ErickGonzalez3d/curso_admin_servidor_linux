@@ -317,7 +317,7 @@ ___
 
  al ejecutar `su` y poner la contraseña nos dira que hay un fallo de autenticación y no es por no sabernos el password es que en realidad no existe un `su` a menos de que se configure 
 
-aun instalando el sistema y aun siendo el unico usuario no tendre permisos de administrador 
+aun instalando el sistema y aun siendo el unico usuario visible no tendre permisos de administrador 
  cuando necesitamos un permiso de superusuario  ejecutamos el comando `sudo` 
  
  podemos intentar leer /etc/shadow con cat  y nos saltara permisos denegados 
@@ -330,8 +330,9 @@ aun instalando el sistema y aun siendo el unico usuario no tendre permisos de ad
  podemos cambiar esos permisos modificando ese archivo con `sudo visudo` se abrira nano con el contenido y puedo cambiar los permisos de administración por si no quiero que todos los usuarios tengan esos permisos 
 
 
- ## Crear y configurar otro usuario  
- al emoezar a trabajar lo hacemos con el usuario por defecto al ejecutar comando
+ ## Crear y configurar otro usuario   
+  
+ al empezar a trabajar lo hacemos con el usuario por defecto al ejecutar comando
   `adduser aguacate` no lo deja ejecutar porque solo el root puede crear usuarios
   `sudo adduser aguacate` crea un usuario aguacate y un grupo aguacate porque no le estamos diciendo el grupo al cual va a pertenecer 
     se crea un directorio en la dentro de /home con nombre aguacate y copia los ficheros de inicio de /etc/skel 
@@ -341,15 +342,46 @@ aun instalando el sistema y aun siendo el unico usuario no tendre permisos de ad
    Work phone 
    Home phone
    other 
-
+  por ultimo confirmar si la información es correcta
 
 
   `adduser pepe --ingroup users ` crea usuario pepe en el grupo de usuarios 
-
+  
   estos usuarios pueden iniciar sesion 
-  para no salirnos cerrando sesion usamos `su aguacate`
-  aca puedo ejecutar `passwd` y cambiar la contraseña por una de mas de 4 caracteres 
+  para no salirnos cerrando sesion usamos `su aguacate` o  `su pepe` y la primera parte de la raix de la terminal cambiaremos de usuario 
+  aca desde el usuario nuevo puedo ejecutar `passwd` y cambiar la contraseña por una de mas de 4 caracteres 
   una vez cambiada la contraseña si el root no conoce la contraseña no podra iniciar sesión con ese usuario 
+
+  si vamos a el directorio home  y listamos el contenido mostrara los usuarios y sus grupos
+
+  ## grupos de usuarios 
+  Podriamos pensar que solo existe el usuario inicial y los que hubiecemos creado, en realidad existen muchos mas usuarios y grupos de usuarios en el sistema 
+  podemos saber cuantos usuarios hay conociendo el contenido de /etc/passwd  se listan los usuarios que existen en el sistema para que este pueda realizar sus funciones 
+  tambien hay varios grupos de usuarios usamos /etc/group para verlos 
+
+  ## propiedad de archivos 
+
+  al gestionar el sistema tendre la necesidad de asignar archivos a cada usuario 
+  hacemos el ejercicio de crear una directorio con archivos.  al realizar un listado del contenido del directorio con ls -l nos muestra el nombre de usuario y despues el grupo 
+
+  para cambiar el grupo y usuario del directorio subo una carperta con cd .. y uso el comando chown de change owner 
+
+  chown 
+  cambiamos la propiedad del los documenttos y archivos cuando deseamos que el usuario de la sesion no pueda cambiar ese archivo o carpeta.
+
+  sudo chown grupo.usuario directotio
+
+  esto cambiara la propiedad de el directorio y permitira al usuario indicado en el comando crear archivos y directorios SIN PODER modificar los archivos que anteriormente estaban en la carpeta 
+
+  para darle acceso total al directorio al nuevo usuario uso
+
+  sudo chown grupo.usuario -R directorio 
+
+  esto lo puede hacer los usuarios que esten inscritos como sudoers, los usuarios que creemos y no sean sudoers no podran cambiar la propiedad de elementos ni siquiera los propios 
+
+
+ # permosos de archivos 
+
   
 
 
