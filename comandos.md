@@ -1,4 +1,13 @@
-# comandos
+# servidor linux
+para correr un servidor necesitamos instalar un sistema operativo de servidor, eso supone que tendriamos que renunciar a nuestro sistema actual 
+o usar otra maquina, una solucion a este inconveniente es virtualizar una maquina en el equipo con el software virtualbox que simula una maquina pero contenida en un software del sistema operativo 
+vamos a virtualbox.org y descargamos la versión para nuestro sistema operativo 
+instalamos virtualbox 
+el programa instala todos los componentes de virtualbox e instala los networker interfaces 
+se avisa que va a añadir una nueva interfaz red virtual para poder comunicarme a travez de la red local con mis maquinas 
+doy si e instalo, los drives usb y demas son opcionales pero mejoran la comunicacion de la maquina virtual con los dispositivos 
+
+## comandos
 
 todos los comandos de linux son archivos binarios que estan en el directorio bin 
 #### pwd
