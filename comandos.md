@@ -50,7 +50,14 @@ crea archivos
 
   * echo mensaje2 >> Archivo.txt agregara mansaje2 al contenido de archivo.txt
 
+#### history 
+muestra el historial de la linea de comandos numerada 
+puedo ejecutar un comando de la historia con
 
+   * !# <- numero de la historia  ejemplo !12
+     !8  ejecuta el comando en la posición 8 de la lista
+   * !in <- busca desde el ultimo hacia atras el comando que comienza por in
+   * ctrl+r hace una busqueda inversa  tecleando las iniciales muestra las opciones que ya ejecute y para seleccionar la opcion y salir de ellas pulso esc y el comando estara en la linea para ejecutarse 
 
 #### dir
 muestra el nombre del directorio 
@@ -74,7 +81,14 @@ ejemplo    `printenv PATH` en un subsistema de windows me muestra
  #### which
 para buscar donde se encuentra un archivo ejecutable , muestra la ruta completa 
 
+#### find 
+encuentra el archivo en el directorio especificandole donde buscar, funciona como un filtro, si conozco donde buscar por ejemplo un binario estara en /bin  los archivos   estaran en /etc 
 
+find /  buscara en la carpeta raiz en todo el disco duro carpetas y archivos, seria tardado
+find /etc  buscara dentro del directorio etc 
+find /etc -name "crontab" buscara carpetas y archivos con nombre crontab
+find /etc -name "cron*" todos los  que comienzan por cron
+file /etc -type f -name "cron*"  solo busca los tipo f files que comienzen por cron 
 
 #  estructura de archivos 
 
@@ -94,6 +108,7 @@ carpetas de aplicaciones y procesos del sistema
 #### directorios estaticos 
 los puede modificar el administrador y los otros usuarios los pueden ver 
 guardan configuraciones de aplicaciones o del sistema que hallamos establecido 
+Son aquellos directorios que contienen archivos que solo pueden ser modificados con la intervención del administrador del sistema. Algunos ejemplos de directorios estáticos son: /etc/password, /etc/shadow, /usr, /opt, /etc, /boot, /bin, /sbin, etc
 
 # directorios 
 
@@ -233,7 +248,7 @@ r -> Del inglés read, indica el permiso de lectura sobre este archivo o directo
 w -> Del inglés write, indica el permiso de escritura sobre este archivo o directorio.
 x -> Del inglés execution, indica el permiso de ejecución sobre este archivo o directorio.
 El guión indica la ausencia de ese permiso.
-
+ 
 drwxr-xr-x 
 
 d directorio
@@ -250,5 +265,50 @@ rw =3
 rx =5
 rw =6
 rwx =7 
+___
+## crear un pequeño programa y agregarlo a las variables de entorno 
 
-## crear un pequeño programa 
+voy a al directorio home y creo un documento 
+
+touch  programaprueba
+
+nano programaprueba
+
+edito el archivo 
+echo  "hola mundo"
+
+cat programaprueba me debe mostrar en pantalla `echo "hola mundo"` pero esto no es la ejecución solo estoy viendo el contenido
+
+para ejecutarlo de manera local uso
+             
+ * `./programa`  algo incorrecto seria separar el slash. el sistema traraia de buscar un directotio y saldria un error `./ programa`
+
+ cuando ejecuto debe salir un error de ` bash: ./programa: Permission denied` esto me indica que el programa no tiene permisos para ejecutarse pues todos los documento se crean en el sistema sin permisos de ejecución 
+ 
+ ### cambiar los permisos de administrador 
+ uso  chmod
+  
+ `chomod 777 programaprueba`
+
+ahora cuando ejecute el programa desde el directorio donde se encuentra, debera imprimir en pantalla el hola mundo 
+
+si cambiamos de directorio y ejecutamos de nuevo el programa no se ejecutara 
+
+para que se ejecute desde cualquier directorio debere poner o exportar la ruta de la carpeta del archivo a la variable PATH
+
+
+### insertando variable PATH
+
+export PATH=$PATH:/home/erickgonzalez3d/directorioEjemplo
+
+ahora desde cualquier lugar puedo ejecuta `programaprueba` sin el ./ al principio como un comando 
+
+si no lo agregamos a las rutas de rastreo de PATH no se ejecutara 
+___
+
+
+
+# super usuario administrador o root 
+
+ este es el usuario de mas alto nivel puede hacer cualquier cosa en el sistema incluso borrar archivos indispensables para el funcionamiento de la maquina, por eso es recomendable hacer solo lo obligatoriamente necesario con este usuario
+ intentamos trabajar como super usuarios con el comando `su`.  en otras distribuciones de linux o unix nos pedira la contraseña y podriamos entrar pero ubuntu o ubuntu server no podremos acceder , y no es porque no se conozca la contraseña es que ubuntu  no tiene un surperadministrador por defecto 
