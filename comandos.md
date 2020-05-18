@@ -7,6 +7,83 @@ el programa instala todos los componentes de virtualbox e instala los networker 
 se avisa que va a añadir una nueva interfaz red virtual para poder comunicarme a travez de la red local con mis maquinas 
 doy si e instalo, los drives usb y demas son opcionales pero mejoran la comunicacion de la maquina virtual con los dispositivos 
 
+una vez ya instalado corremos virtualbox y le indicamos nueva maquina  le damos un nombre y en tipo de sistema windows reconocera el tipo de maquina en mi caso selecciono linux y ubuntu 64x si no es de 64 bits la version que descargue habra error porque no son compatibles  y lo guardo el la carpeta por defecto que esta en la carpeta de usuario de windows 
+le indicamos una cantidad de memoria, nunca superior a la que necesita el sistema fisico en mi caso 1gb 
+
+
+
+
+elijo es tamaño por defecto de disco 10 gb
+
+
+ 
+dejamos vacio el proxy 
+
+
+
+
+
+### descargamos la iso de ubuntu server 
+
+# arrancar maquina virtual con virtualbox 
+damos al botón iniciar de virtualbox y aperece un mensaje indicandonos que seleccionemos un disco de inicio , debemos ponerle un nombre a la maquina y utilizar la selección de un cdrom pero como no vamos a iniciar desde un disco si no desde la imagen iso de ubuntu porque ( una imagen iso es como una virtualizacion de un cd ) cd que descargamos y tenemos en una ubicación , dependiendo de la maquina que vamos a instalar 32 0 64 bits <cuidado con esto si elegimos 32 y la iso es de 64 no seran compatibles>
+y yo dejo la carpeta por defecto y doy next
+
+asigno la cantidad de memoria al disco nunca mas de la que le doy a sistema real de la maquina en mi caso por defecto 1 gb
+
+damos next 
+##### hard disk o disco duro 
+
+pregunta si queremos crear el disco virtual podemos hacerlo fisicamente la opcion archivo de disco duro que es un archivo que dentro de el se simula un disco virtual extensible y ajustable a el tamaño de uso,  mientras que el disco virtual si acupa el espacio que le asignemos de forma fija , 
+
+ la opcion de NO  agregar disco crea una maquina virtual sin sin disco 
+
+
+la opcion de archivo de disco no crea un disco si no que se simula un disco dentro de un archivo 
+
+##### formatos de disco
+ elegimos el nativo de VDI virtualbox, podemos ver que soporta otros si es necesario 
+##### storage in physical hard disk
+
+Si reservamos el espacio dinamicamente en el disco para no ocupar espacio inutilizado gestiona mejor el espacio en disco pero penaliza un poco nuestro rendimiento debido a la constante desfracmentación del disco
+
+mientras que el espacio fijo mejora rendimiento pero ocupa espacio completo que asignemos 
+
+elegimos crear disco virtual y usar tamaño Dinamico 
+
+##### tamaño del disco 
+
+lo dejo por defecto en 10 Gb y si quiero puedo cambiar la ruta donde se guardara yo la dejo por defecto 
+
+___ 
+#### aparce la maquina en virtualbox pero esta vacia 
+
+es como si tuviesemos un computador, pero con nada instalado y nos indica que esta apagado, lo podemos prender en el boton o en la flecha verde iniciar 
+
+
+* al dar iniciar nos pide elegir la unidad cd para iniciar 
+  - elijo la carpeta 
+
+
+
+
+
+le damos al boton de la carpeta para buscar la imagen iso, se abre el explorador y selecciona la imagen  donde la tengamos  y virtualbox debe reconocela e iniciarl la instalación 
+
+
+
+
+si se me pierde la ventana de la maquina virtual es porque esta detras de virtualbox 
+vamos a la ventana del servidor de ubuntu, tecnicamente se podria apagar la ventana de virtuabox pero la minimizamos 
+
+iniciamos la instacion con la ultima actualización de ubuntu elegimos el idioma la distribucin de teclado 
+
+noencriptamos la carpeta del usuario porque si se corronpe y queremos recuperarla nos tratara como un intruso 
+### preguntas sobre la configuracion de red y la configuracion de discos duros 
+ Al conectar DHCP Y IPV6  es intentar encontrar una conexión a la red 
+
+
+
 ## comandos
 
 todos los comandos de linux son archivos binarios que estan en el directorio bin 
